@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Odontólogos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <!-- Tus otros scripts JS aquí -->
+    <script text="text/javascript" src="/js/get_odontologo.js"></script>
+    <script text="text/javascript" src="/js/delete_odontologo.js"></script>
+    <script text="text/javascript" src="/js/put_odontologo.js"></script>
+    <script text="text/javascript" src="/js/post_odontologo.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+        <a class="navbar-brand" href="/index.html">
+            <span id="title">Clínica Odontológica</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <div class="navbar-nav">
+            <a class="nav-link active" href="./odontologos.html">ODONTOLOGOS</a>
+        </div>
+    
+        </div>
+    </nav>
+    
+    <div class="container">
+        
+            <h1>Gestión de Odontologos</h1>
+            <div class="row d-flex">
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+
+                </div>
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addOdontologoModal">
+                        Agregar Odontólogo
+                    </button>
+                </div>
+            </div>
+        
+        
+                  
+        <!-- Modal Odontologo add -->
+        <div class="modal fade" id="addOdontologoModal" tabindex="-1" aria-labelledby="addOdontologoModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Agregar Odontólogo</h5>
+                        <button type="button" class="close cerrarActualizar" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                              <form id="add_new_dentist">
+                                <div class="form-group">
+                                  <label class="control-label" for="add_nombre">Nombre:*</label>
+                                  <input type="text" class="form-control" id="add_nombre"
+                                         placeholder="Ingrese el nombre"
+                                         name="nombre" required></input>
+                                </div>
+                                <div class="form-group">
+                                  <label class="control-label" for="add_apellido">Apellido:*</label>
+                                  <input type="text" class="form-control" id="add_apellido"
+                                         placeholder="Ingrese el apellido"
+                                         name="apellido" required></input>
+                                </div>
+                        
+                                <div class="form-group">
+                                  <label class="control-label" for="add_matricula">Matrícula:*</label>
+                                  <input type="text" class="form-control" id="add_matricula"
+                                         placeholder="Ingrese la matrícula"
+                                         name="matricula" required></input>
+                                </div>
+                        
+                        
+                                <button type="submit" class="btn btn-danger"
+                                        id="btn-add-new-dentist">Guardar</button>
+                                        <button type="button" class="btn btn-secondary cerrarActualizar" data-dismiss="modal">Cerrar</button>
+                              </form>
+                              <div id="add_response" style="display:none; margin-top:10px">
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="div_dentist_table">          
+        <div class="row col-md-12 table-responsive">
+            <table id="dentistTable" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Matrícula</th>
+                        <th>Eliminar</th>
+                        <th>Actualizar</th>
+                    </tr>
+                </thead>
+                <tbody id="dentistTableBody">
+                    <!-- Rows will be added dynamically here -->
+                </tbody>
+            </table>
+        </div>
+         </div>
+    
+         <div class="row">
+            <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="updateModalLabel">Actualizar Odontólogo</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="update_dentist_form">
+                                <div class="form-group">
+                                    <label for="put_dentist_id">ID:</label>
+                                    <input type="text" class="form-control" id="put_dentist_id" disabled required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="put_nombre">Nombre:*</label>
+                                    <input type="text" class="form-control" id="put_nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="put_apellido">Apellido:*</label>
+                                    <input type="text" class="form-control" id="put_apellido" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="put_matricula">Matrícula:*</label>
+                                    <input type="text" class="form-control" id="put_matricula" required>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Actualizar</button>
+                            </form>
+                            <div id="put_add_response" style="display:none; margin-top:10px">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+</body>
+</html>
